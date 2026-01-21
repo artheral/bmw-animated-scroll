@@ -66,7 +66,7 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
                 // Calculate contain ratio based on physical pixels
                 const hRatio = canvas.width / img.width;
                 const vRatio = canvas.height / img.height;
-                const ratio = Math.min(hRatio, vRatio); // Contain
+                const ratio = Math.max(hRatio, vRatio); // Cover
 
                 const centerShift_x = (canvas.width - img.width * ratio) / 2;
                 const centerShift_y = (canvas.height - img.height * ratio) / 2;
