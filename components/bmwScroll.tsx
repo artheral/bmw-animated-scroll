@@ -4,7 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 
 const frameCount = 147; // Frames 0 to 146
-const getFramePath = (i: number) => `/bmw-scatter-webp/3c3f9a6d-a794-417c-b5c7-082ad19705cd-${i}.webp`;
+const repoName = 'BMW'; // Must match next.config.ts
+const isProd = process.env.NODE_ENV === 'production';
+const getFramePath = (i: number) => `${isProd ? `/${repoName}` : ''}/bmw-scatter-webp/3c3f9a6d-a794-417c-b5c7-082ad19705cd-${i}.webp`;
 
 function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
     const containerRef = useRef<HTMLDivElement>(null);
