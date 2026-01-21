@@ -24,29 +24,32 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
 
     // Text Transforms: Opacity + Blur + Y-Parallax + Scale
 
+    // Shared Shadows: Depth + Glow
+    const shadows = "drop-shadow(0 5px 8px rgba(0,0,0,0.4)) drop-shadow(0 0 12px rgba(255,255,255,0.4))";
+
     // 0% - Intact
     const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0]);
-    const blur1 = useTransform(scrollYProgress, [0, 0.1, 0.2], ["blur(0px)", "blur(0px)", "blur(20px)"]);
+    const blur1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [`blur(0px) ${shadows}`, `blur(0px) ${shadows}`, `blur(20px) ${shadows}`]);
     const scale1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0.8]);
 
     // 25% - Separation Begins
     const opacity2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], [0, 1, 1, 0]);
-    const blur2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const blur2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], [`blur(10px) ${shadows}`, `blur(0px) ${shadows}`, `blur(0px) ${shadows}`, `blur(10px) ${shadows}`]);
     const y2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], [40, 0, 0, -40]);
 
     // 50% - Pure Performance (Right aligned)
     const opacity3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], [0, 1, 1, 0]);
-    const blur3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const blur3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], [`blur(10px) ${shadows}`, `blur(0px) ${shadows}`, `blur(0px) ${shadows}`, `blur(10px) ${shadows}`]);
     const y3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], [40, 0, 0, -40]);
 
     // 75% - Every Part Has Purpose (Centered)
     const opacity4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], [0, 1, 1, 0]);
-    const blur4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const blur4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], [`blur(10px) ${shadows}`, `blur(0px) ${shadows}`, `blur(0px) ${shadows}`, `blur(10px) ${shadows}`]);
     const scale4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], [0.8, 1, 1, 1.2]);
 
     // 95% - Hold Frame (CTA)
     const opacity5 = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
-    const blur5 = useTransform(scrollYProgress, [0.9, 0.95], ["blur(20px)", "blur(0px)"]);
+    const blur5 = useTransform(scrollYProgress, [0.9, 0.95], [`blur(20px) ${shadows}`, `blur(0px) ${shadows}`]);
 
     useEffect(() => {
         if (!images.length || !canvasRef.current) return;
