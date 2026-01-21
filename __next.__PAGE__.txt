@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[77750,["/bmw-animated-scroll/_next/static/chunks/97e857736d042b69.js"],"default"]
+2:I[77750,["/bmw-animated-scroll/_next/static/chunks/5e0a0cd8fa3476cc.js"],"default"]
 3:I[97367,["/bmw-animated-scroll/_next/static/chunks/2f236954d6a65e12.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"XeKBYH1p6pcxxw8V13RRp","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"bg-[#050505] min-h-screen","children":["$","$L2",null,{}]}],[["$","script","script-0",{"src":"/bmw-animated-scroll/_next/static/chunks/97e857736d042b69.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"rx7_O1ojMTWInRfLeR5cw","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"bg-[#050505] min-h-screen","children":["$","$L2",null,{}]}],[["$","script","script-0",{"src":"/bmw-animated-scroll/_next/static/chunks/5e0a0cd8fa3476cc.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
