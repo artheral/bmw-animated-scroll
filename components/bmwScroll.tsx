@@ -19,24 +19,34 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
 
     const currentIndex = useTransform(scrollYProgress, [0, 1], [0, 146]);
 
-    // Text Opacity Transforms
+    // Shimmer Parallax effect ( Global, moving through all text )
+    const shimmer = useTransform(scrollYProgress, [0, 1], ['0%', '200%']);
+
+    // Text Transforms: Opacity + Blur + Y-Parallax + Scale
+
     // 0% - Intact
     const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+    const blur1 = useTransform(scrollYProgress, [0, 0.15], ["blur(0px)", "blur(20px)"]);
+    const scale1 = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
 
     // 25% - Separation Begins
     const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
-    const y2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [40, 0, -40]);
+    const blur2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], ["blur(20px)", "blur(0px)", "blur(20px)"]);
+    const y2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [60, 0, -60]); // Increased paralax throw
 
     // 50% - Pure Performance (Right aligned)
     const opacity3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]);
-    const y3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [40, 0, -40]);
+    const blur3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], ["blur(20px)", "blur(0px)", "blur(20px)"]);
+    const y3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [60, 0, -60]);
 
     // 75% - Every Part Has Purpose (Centered)
     const opacity4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0, 1, 0]);
-    const scale4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0.95, 1, 1.05]);
+    const blur4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], ["blur(20px)", "blur(0px)", "blur(20px)"]);
+    const scale4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0.8, 1, 1.2]); // Apple style zoom in
 
     // 95% - Hold Frame (CTA)
     const opacity5 = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
+    const blur5 = useTransform(scrollYProgress, [0.9, 0.95], ["blur(20px)", "blur(0px)"]);
 
     useEffect(() => {
         if (!images.length || !canvasRef.current) return;
@@ -95,6 +105,16 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
         }
     }, [images, currentIndex]);
 
+    // Shared shimmer style for text
+    const shimmerStyle = {
+        backgroundImage: 'linear-gradient(110deg, #999 40%, #fff 50%, #999 60%)',
+        backgroundSize: '200% auto',
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        color: 'transparent',
+        backgroundPositionX: shimmer
+    };
+
     return (
         <div ref={containerRef} className="h-[400vh] bg-[#030303] relative">
 
@@ -109,22 +129,32 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
 
                 {/* Text 0% - Hero */}
                 <motion.div
-                    style={{ opacity: opacity1 }}
+                    style={{ opacity: opacity1, filter: blur1, scale: scale1 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
                 >
                     <div className="text-center px-4">
-                        <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-white text-glow mb-2">BMW M4</h1>
+                        <motion.h1
+                            style={shimmerStyle}
+                            className="text-6xl md:text-9xl font-bold tracking-tighter mb-2"
+                        >
+                            BMW M4
+                        </motion.h1>
                         <p className="text-xl md:text-3xl font-medium text-white/70 tracking-[0.2em] uppercase">Competition</p>
                     </div>
                 </motion.div>
 
                 {/* Text 25% - Left Aligned */}
                 <motion.div
-                    style={{ opacity: opacity2, y: y2 }}
+                    style={{ opacity: opacity2, filter: blur2, y: y2 }}
                     className="absolute inset-0 flex items-center px-8 md:px-32 justify-start pointer-events-none z-20"
                 >
                     <div className="max-w-xl">
-                        <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-white text-glow mb-6 leading-none">Defying<br />Gravity.</h2>
+                        <motion.h2
+                            style={shimmerStyle}
+                            className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 leading-none"
+                        >
+                            Defying<br />Gravity.
+                        </motion.h2>
                         <div className="h-1 w-20 bg-white/50 mb-6 rounded-full" />
                         <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed">Structural integrity unbinds.<br />Mass becomes memory.</p>
                     </div>
@@ -132,11 +162,16 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
 
                 {/* Text 50% - Right Aligned */}
                 <motion.div
-                    style={{ opacity: opacity3, y: y3 }}
+                    style={{ opacity: opacity3, filter: blur3, y: y3 }}
                     className="absolute inset-0 flex items-center px-8 md:px-32 justify-end pointer-events-none z-20"
                 >
                     <div className="max-w-xl text-right flex flex-col items-end">
-                        <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-white text-glow mb-6 leading-none">Pure<br />Unbound.</h2>
+                        <motion.h2
+                            style={shimmerStyle}
+                            className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 leading-none"
+                        >
+                            Pure<br />Unbound.
+                        </motion.h2>
                         <div className="h-1 w-20 bg-white/50 mb-6 rounded-full" />
                         <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed">The machine exposes its soul.<br />Every bolt accounted for.</p>
                     </div>
@@ -144,21 +179,32 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
 
                 {/* Text 75% - Centered */}
                 <motion.div
-                    style={{ opacity: opacity4, scale: scale4 }}
+                    style={{ opacity: opacity4, filter: blur4, scale: scale4 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
                 >
                     <div className="text-center">
-                        <h2 className="text-5xl md:text-9xl font-bold tracking-tighter text-white text-glow leading-none mb-4">Every Part<br /><span className="text-white/50">Has Purpose.</span></h2>
+                        <motion.h2
+                            style={shimmerStyle}
+                            className="text-5xl md:text-9xl font-bold tracking-tighter leading-none mb-4"
+                        >
+                            Every Part<br /><span className="text-white/50" style={{ backgroundImage: 'none', backgroundClip: 'unset', color: 'rgba(255,255,255,0.5)' }}>Has Purpose.</span>
+                        </motion.h2>
                     </div>
                 </motion.div>
 
                 {/* Text 95% - Final CTA */}
                 <motion.div
-                    style={{ opacity: opacity5 }}
+                    style={{ opacity: opacity5, filter: blur5 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none z-30"
                 >
                     <div className="text-center flex flex-col items-center">
-                        <h2 className="text-5xl md:text-9xl font-bold tracking-tighter text-white text-glow mb-12 leading-none">M.<br />Engineered to Move.</h2>
+                        <motion.h2
+                            style={shimmerStyle}
+                            className="text-5xl md:text-9xl font-bold tracking-tighter mb-12 leading-none"
+                        >
+                            M.<br />Engineered to Move.
+                        </motion.h2>
+
 
                         <button className="group pointer-events-auto relative px-12 py-5 bg-white text-black font-bold tracking-[0.15em] uppercase text-sm md:text-base overflow-hidden btn-glow">
                             <span className="relative z-10">Configure Yours</span>
