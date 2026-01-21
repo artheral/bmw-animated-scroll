@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-brand-glow: rgba(255, 255, 255, 0.15);
+  --color-brand-accent: #ffffff;
+}
+
+html,
+body {
+  background-color: #030303;
+  color: #ffffff;
+  height: 100%;
+  margin: 0;
+  overscroll-behavior: none;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.btn-glow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  transform: scale(1.02);
+}
