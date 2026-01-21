@@ -25,24 +25,24 @@ function ScrollExperience({ images }: { images: HTMLImageElement[] }) {
     // Text Transforms: Opacity + Blur + Y-Parallax + Scale
 
     // 0% - Intact
-    const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-    const blur1 = useTransform(scrollYProgress, [0, 0.15], ["blur(0px)", "blur(20px)"]);
-    const scale1 = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
+    const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0]);
+    const blur1 = useTransform(scrollYProgress, [0, 0.1, 0.2], ["blur(0px)", "blur(0px)", "blur(20px)"]);
+    const scale1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0.8]);
 
     // 25% - Separation Begins
-    const opacity2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
-    const blur2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], ["blur(20px)", "blur(0px)", "blur(20px)"]);
-    const y2 = useTransform(scrollYProgress, [0.15, 0.25, 0.35], [60, 0, -60]); // Increased paralax throw
+    const opacity2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], [0, 1, 1, 0]);
+    const blur2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const y2 = useTransform(scrollYProgress, [0.15, 0.22, 0.28, 0.35], [40, 0, 0, -40]);
 
     // 50% - Pure Performance (Right aligned)
-    const opacity3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]);
-    const blur3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], ["blur(20px)", "blur(0px)", "blur(20px)"]);
-    const y3 = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [60, 0, -60]);
+    const opacity3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], [0, 1, 1, 0]);
+    const blur3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const y3 = useTransform(scrollYProgress, [0.4, 0.47, 0.53, 0.6], [40, 0, 0, -40]);
 
     // 75% - Every Part Has Purpose (Centered)
-    const opacity4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0, 1, 0]);
-    const blur4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], ["blur(20px)", "blur(0px)", "blur(20px)"]);
-    const scale4 = useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0.8, 1, 1.2]); // Apple style zoom in
+    const opacity4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], [0, 1, 1, 0]);
+    const blur4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+    const scale4 = useTransform(scrollYProgress, [0.65, 0.72, 0.78, 0.85], [0.8, 1, 1, 1.2]);
 
     // 95% - Hold Frame (CTA)
     const opacity5 = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
